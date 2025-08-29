@@ -26,3 +26,48 @@ const dominos = {
   zipcode: 54321,
   acceptsReservations: true,
 };
+
+const printPizzaPlace = function () {
+  for (const [key, value] of Object.entries(dominos)) {
+    console.log(key, value);
+  }
+};
+
+console.log(printPizzaPlace());
+
+const toppingsPriceRange = function (dominos) {
+  const toppings = dominos.pizzaToppings;
+
+  // start both lowest & highest with the FIRST value in the object
+  const firstKey = Object.keys(toppings)[0];
+  let lowest = toppings[firstKey];
+  let highest = toppings[firstKey];
+
+  for (const key in toppings) {
+    const price = toppings[key];
+    if (price < lowest) {
+      lowest = price;
+    }
+    if (price > highest) {
+      highest = price;
+    }
+  }
+
+  return [lowest, highest];
+};
+
+console.log(toppingsPriceRange(dominos));
+
+const calculateAverageRating = function (dominos) {
+  const review = dominos.starReviews;
+  let sum = 0;
+  let count = 0;
+  for (const key in review) {
+    sum += review[key];
+    count++;
+  }
+
+  return sum / count;
+};
+
+console.log(calculateAverageRating(dominos));
